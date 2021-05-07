@@ -37,7 +37,7 @@ public class EmailService {
         context.setVariable("mailTo", mailTo);
 
         String htmlBody = templateEngine.process(htmlTemplate, context);
-        sendEmail(mailTo, "Thymeleaf Email Demo", htmlBody);
+        sendEmail(mailTo, "Registration successful", htmlBody);
     }
 
 

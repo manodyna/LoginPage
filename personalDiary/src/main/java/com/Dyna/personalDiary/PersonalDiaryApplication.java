@@ -24,7 +24,6 @@ public class PersonalDiaryApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 
-		emailService.prepareAndSendEmail();
 	}
 
 }
