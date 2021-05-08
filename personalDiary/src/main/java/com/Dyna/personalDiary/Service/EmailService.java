@@ -1,5 +1,6 @@
 package com.Dyna.personalDiary.Service;
 
+import com.Dyna.personalDiary.login.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,12 @@ public class EmailService {
         this.emailSender = emailSender;
     }
 
+    User user = new User();
+
     public void prepareAndSendEmail() throws MessagingException, javax.mail.MessagingException {
         String htmlTemplate = "templates/emailTemplate";
         String mailTo = "manodynak@gmail.com";
+        //khkrishna194@gmail.com
         initializeTemplateEngine();
 
         context.setVariable("sender", "Thymeleaf Email");
@@ -39,7 +43,6 @@ public class EmailService {
         String htmlBody = templateEngine.process(htmlTemplate, context);
         sendEmail(mailTo, "Registration successful", htmlBody);
     }
-
 
     private void sendEmail(String mailTo, String subject, String mailBody) throws javax.mail.MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
