@@ -1,6 +1,7 @@
 package com.Dyna.personalDiary.Service;
 
 import com.Dyna.personalDiary.login.User;
+import com.Dyna.personalDiary.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import java.util.Locale;
 @Service
 public class EmailService {
 
+    @Autowired
+    public UserRepository repository;
+
     private static TemplateEngine templateEngine;
     private static Context context;
     private static JavaMailSender emailSender;
@@ -29,11 +33,16 @@ public class EmailService {
         this.emailSender = emailSender;
     }
 
-    User user = new User();
+    String getEmail(){
+        User user = new User();
+        String email = user.getEmail();
+        return email;
+    }
 
     public void prepareAndSendEmail() throws MessagingException, javax.mail.MessagingException {
         String htmlTemplate = "templates/emailTemplate";
-        String mailTo = "manodynak@gmail.com";
+        String mailTo = getEmail();
+
         //khkrishna194@gmail.com
         initializeTemplateEngine();
 
